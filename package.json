@@ -16,7 +16,5 @@
     "url": "https://github.com/CastelloDev/svg-optimizer.git/issues"
   },
   "homepage": "https://github.com/CastelloDev/svg-optimizer.git#readme",
-  "dependencies": {
-    "react-svg": "^10.0.20"
-  }
+  "dependencies": {}
 }
