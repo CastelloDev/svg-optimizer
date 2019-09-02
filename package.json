@@ -1,6 +1,7 @@
 {
   "name": "optimizesvg",
   "version": "1.0.0",
+  "private":true,
   "description": "a  Basic app to optimize SVG files",
   "main": "app.js",
   "scripts": {
