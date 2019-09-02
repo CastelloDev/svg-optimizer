@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@gitlab.com/MpiloMshengu/optimize-svg.git"
+    "url": "git+ssh://github.com/CastelloDev/svg-optimizer.git"
   },
-  "author": "Mpilo Mshengu",
+  "author": "retro",
   "license": "ISC",
   "bugs": {
-    "url": "https://gitlab.com/MpiloMshengu/optimize-svg/issues"
+    "url": "https://github.com/CastelloDev/svg-optimizer.git/issues"
   },
-  "homepage": "https://gitlab.com/MpiloMshengu/optimize-svg#readme",
+  "homepage": "https://github.com/CastelloDev/svg-optimizer.git#readme",
   "dependencies": {
     "react-svg": "^10.0.20"
   }
