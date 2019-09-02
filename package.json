@@ -1,0 +1,22 @@
+{
+  "name": "optimizesvg",
+  "version": "1.0.0",
+  "description": "a  Basic app to optimize SVG files",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/MpiloMshengu/optimize-svg.git"
+  },
+  "author": "Mpilo Mshengu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/MpiloMshengu/optimize-svg/issues"
+  },
+  "homepage": "https://gitlab.com/MpiloMshengu/optimize-svg#readme",
+  "dependencies": {
+    "react-svg": "^10.0.20"
+  }
+}
