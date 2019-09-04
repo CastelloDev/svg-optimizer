@@ -1,100 +1,51 @@
+import fs from 'fs';
+import tools from 'simple-svg-tools';
+import { svgo } from './svgo.config.js';
+import SVGO from 'svgo';
+import { IMPORT_DIRECTORY, EXPORT_DIRECTORY } from './constants';
 
-const path = require('path');
-const fs = require('fs');
-const tools = require('simple-svg-tools');
-const directoryPath = path.join(__dirname, 'svgs');
-const SVGO = require('svgo');
-const exportPath = path.join(__dirname, 'optimizedSVGs');
+export const getSvgoObject = () => {
+    return new SVGO(svgo);
+}
 
-const svgo = new SVGO({
-    plugins: [{
-       cleanupAttrs: true,
-   }, {
-       removeDoctype: true,
-   },{
-       removeXMLProcInst: true,
-   },{
-       removeComments: true,
-   },{
-       removeMetadata: true,
-   },{
-       removeTitle: true,
-   },{
-       removeDesc: true,
-   },{
-       removeUselessDefs: true,
-   },{
-       removeEditorsNSData: true,
-   },{
-       removeEmptyAttrs: true,
-   },{
-       removeHiddenElems: true,
-   },{
-       removeEmptyText: true,
-   },{
-       removeEmptyContainers: true,
-   },{
-       removeViewBox: false,
-   },{
-       cleanupEnableBackground: true,
-   },{
-       convertStyleToAttrs: true,
-   },{
-       convertColors: true,
-   },{
-       convertPathData: true,
-   },{
-       convertTransform: true,
-   },{
-       removeUnknownsAndDefaults: true,
-   },{
-        removeNonInheritableGroupAttrs: true,
-   },{
-       removeUselessStrokeAndFill: true,
-   },{
-       removeUnusedNS: true,
-   },{
-        cleanupIDs: true,
-   },{
-       cleanupNumericValues: true,
-   },{
-       moveElemsAttrsToGroup: true,
-   },{
-       moveGroupAttrsToElems: true,
-   },{
-       collapseGroups: true,
-   },{
-       removeRasterImages: false,
-   },{
-       mergePaths: true,
-   },{
-       convertShapeToPath: true,
-   },{
-       sortAttrs: true,
-   },{
-       removeDimensions: true,
-   },{
-       removeAttrs: {attrs: '(stroke|fill)'},
-   }]
-});
+export const getAllFileNames = (folderDirectory) => {
+    return fs.readdirSync(folderDirectory);
+}
 
-fs.readdir(directoryPath, function (err, files) {
-    if (err) {
-        return console.log('Unable to scan directory: ' + err);
-    }
-    files.forEach(function(element) {
-        var filepath = path.join(directoryPath, element);
-        fs.readFile(filepath, 'utf8', function(err, data) {
-            if (err) {
-                throw err;
-            }
-            svgo.optimize(data, {path: filepath}).then(function(result) {
-                tools.ExportSVG(result.data, path.join(exportPath,element)).then(() => {
-                    console.log('Exported!');
-                }).catch(err => {
-                    console.log(err);
-                });
-            });
-        });
-    });
-});
+export const getFileData = (fileDirectory) => {
+    return fs.readFileSync(fileDirectory);
+}
+
+export const exportSvg = (svgo, data, fileName) => {
+    svgo.optimize(data)
+    .then(result => {
+        let exportDirectory = EXPORT_DIRECTORY + fileName;
+
+        tools.ExportSVG(result.data, exportDirectory)
+        .then(() => console.log('Exported: '+fileName))
+        .catch(err => console.log(err));
+    })
+    .catch(err => console.log(err));
+}
+
+export const buildReport = directory => {
+    console.log('\ndirectory: '+directory);
+    const fileNames = getAllFileNames(directory);
+    fileNames.forEach(fileName=> {
+        const filePath = directory + fileName;
+        const stat = fs.statSync(filePath)
+        console.log(fileName + '' + stat.size)
+    })
+}
+
+export const comparisonReport = (origonalDirectory, optimizedDirectory) => {
+    console.log(origonalDirectory + " -> " + optimizedDirectory);
+    const fileNames = getAllFileNames(origonalDirectory);
+    fileNames.forEach(fileName => {
+        const origionalFilePath = origonalDirectory + fileName;
+        const optimizedFilePath = optimizedDirectory + fileName;
+        const origionalSize = fs.statSync(origionalFilePath).size;
+        const optimizedSize = fs.statSync(optimizedFilePath).size;
+        console.log(fileName + ' : ' + origionalSize + ' -> ' + optimizedSize);
+    })
+}
