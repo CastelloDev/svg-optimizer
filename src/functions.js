@@ -65,7 +65,7 @@ export const writeSvgCodeIntoSvgFiles = directory => {
         oldData.slice(PositionToInsert, oldData.length)
       ].join("");
 
-      fs.writeFile(filePath, "\n" + newData + "\n", err => {
+      fs.writeFile(filePath,newData, err => {
         if (!err) {
           console.log("Successfully Written to File.");
         }else{
