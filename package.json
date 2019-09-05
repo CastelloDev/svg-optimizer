@@ -1,7 +1,7 @@
 {
   "name": "optimizesvg",
   "version": "1.0.0",
-  "private":true,
+  "private": true,
   "description": "a  Basic app to optimize SVG files",
   "main": "app.js",
   "scripts": {
@@ -17,5 +17,8 @@
     "url": "https://github.com/CastelloDev/svg-optimizer.git/issues"
   },
   "homepage": "https://github.com/CastelloDev/svg-optimizer.git#readme",
-  "dependencies": {}
+  "dependencies": {
+    "i": "^0.3.6",
+    "simple-svg-tools": "^1.1.12"
+  }
 }
