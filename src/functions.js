@@ -58,21 +58,21 @@ export const writeSvgCodeIntoSvgFiles = directory => {
     var filePath = directory + fileName;
     var oldData = getFileData(filePath).toString();
     if (oldData.search(CODE_ELEMENT) < 0) {
-      var PositionToInsert = oldData.indexOf(">")+1;
+      var PositionToInsert = oldData.indexOf(">") + 1;
       var newData = [
         oldData.slice(0, PositionToInsert),
         CODE_ELEMENT,
         oldData.slice(PositionToInsert, oldData.length)
       ].join("");
 
-      fs.writeFile(filePath,newData, err => {
-        if (!err) {
-          console.log("Successfully Written to File.");
-        }else{
+      fs.writeFile(filePath, newData, err => {
+        if (err) {
           console.log(err);
+          
+        } else {
+          console.log("Successfully Written to "+ fileName +"File.");
         }
       });
     }
   });
 };
-
