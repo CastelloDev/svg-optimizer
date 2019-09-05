@@ -68,6 +68,8 @@ export const writeSvgCodeIntoSvgFiles = directory => {
       fs.writeFile(filePath, "\n" + newData + "\n", err => {
         if (!err) {
           console.log("Successfully Written to File.");
+        }else{
+          console.log(err);
         }
       });
     }
