@@ -46,9 +46,9 @@ export const comparisonReport = (originalDirectory, optimizedDirectory) => {
   fileNames.forEach(fileName => {
     const originalFilePath = originalDirectory + fileName;
     const optimizedFilePath = optimizedDirectory + fileName;
-    const originalSize = fs.statSync(origionalFilePath).size;
+    const originalSize = fs.statSync(originalFilePath).size;
     const optimizedSize = fs.statSync(optimizedFilePath).size;
-    console.log(`${fileName} :  ${origionalSize} -> ${optimizedSize}`);
+    console.log(`${fileName} :  ${originalSize} -> ${optimizedSize}`);
   });
 };
 
