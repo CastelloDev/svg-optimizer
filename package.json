@@ -1,11 +1,11 @@
 {
   "name": "optimizesvg",
   "version": "1.0.0",
-  "private":true,
-  "description": "a  Basic app to optimize SVG files",
+  "private": true,
+  "description": "A basic app to optimize SVG files",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node -r esm app.js"
   },
   "repository": {
     "type": "git",
@@ -17,5 +17,9 @@
     "url": "https://github.com/CastelloDev/svg-optimizer.git/issues"
   },
   "homepage": "https://github.com/CastelloDev/svg-optimizer.git#readme",
-  "dependencies": {}
+  "dependencies": {
+    "esm": "3.2.25",
+    "simple-svg-tools": "1.1.12",
+    "svgo": "1.3.0"
+  }
 }
