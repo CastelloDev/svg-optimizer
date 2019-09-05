@@ -22,30 +22,30 @@ export const exportSvg = (svgo, data, fileName) => {
         let exportDirectory = EXPORT_DIRECTORY + fileName;
 
         tools.ExportSVG(result.data, exportDirectory)
-        .then(() => console.log('Exported: '+fileName))
+        .then(() => console.log(`Exported: ${fileName}`))
         .catch(err => console.log(err));
     })
     .catch(err => console.log(err));
 }
 
 export const buildReport = directory => {
-    console.log('\ndirectory: '+directory);
+    console.log(`\ndirectory: ${directory}`);
     const fileNames = getAllFileNames(directory);
     fileNames.forEach(fileName=> {
         const filePath = directory + fileName;
         const stat = fs.statSync(filePath)
-        console.log(fileName + '' + stat.size)
+        console.log(`${fileName}  ${stat.size}`)
     })
 }
 
-export const comparisonReport = (origonalDirectory, optimizedDirectory) => {
-    console.log(origonalDirectory + " -> " + optimizedDirectory);
-    const fileNames = getAllFileNames(origonalDirectory);
+export const comparisonReport = (originalDirectory, optimizedDirectory) => {
+    console.log(`${originalDirectory} ->  ${optimizedDirectory}`);
+    const fileNames = getAllFileNames(originalDirectory);
     fileNames.forEach(fileName => {
-        const origionalFilePath = origonalDirectory + fileName;
+        const origionalFilePath = originalDirectory + fileName;
         const optimizedFilePath = optimizedDirectory + fileName;
         const origionalSize = fs.statSync(origionalFilePath).size;
         const optimizedSize = fs.statSync(optimizedFilePath).size;
-        console.log(fileName + ' : ' + origionalSize + ' -> ' + optimizedSize);
+        console.log(`${fileName} :  ${origionalSize} -> ${optimizedSize}`);
     })
 }
