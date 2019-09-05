@@ -58,7 +58,7 @@ export const writeSvgCodeIntoSvgFiles = directory => {
     var filePath = directory + fileName;
     var oldData = getFileData(filePath).toString();
     if (oldData.search(CODE_ELEMENT) < 0) {
-      var PositionToInsert = oldData.indexOf("</svg>");
+      var PositionToInsert = oldData.indexOf(">")+1;
       var newData = [
         oldData.slice(0, PositionToInsert),
         CODE_ELEMENT,
