@@ -19,6 +19,7 @@
   "homepage": "https://github.com/CastelloDev/svg-optimizer.git#readme",
   "dependencies": {
     "esm": "3.2.25",
+    "fs": "0.0.1-security",
     "simple-svg-tools": "1.1.12",
     "svgo": "1.3.0"
   }
